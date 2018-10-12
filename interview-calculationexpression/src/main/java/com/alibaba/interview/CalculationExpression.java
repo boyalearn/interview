@@ -1,6 +1,10 @@
 package com.alibaba.interview;
 
-
+/**
+ * 表达式求值核心运算
+ * @author zouhuixing
+ *
+ */
 public class CalculationExpression {
 	
 	/**
@@ -42,12 +46,15 @@ public class CalculationExpression {
 	 * @throws ExpressionException
 	 */
 	public int calculate() throws ExpressionException {
+		
 		this.allOpData=new Stack<Integer>();
 		char[] exprArr=(expression+"#").toCharArray();
+		
 		Boolean beforIsOpDataMark=false;
 		optr.push('#');
+		
+		
 		for(int i=0;i<exprArr.length;i++) {
-			
 			char curr=exprArr[i];
 			if(Character.isWhitespace(curr)) {
 				continue;
@@ -57,7 +64,13 @@ public class CalculationExpression {
 		
 		return Integer.valueOf(optd.getTop());
 	}
-	
+	/**
+	 * 递归解析并且运算操作
+	 * @param curr
+	 * @param beforIsOpDataMark
+	 * @return
+	 * @throws ExpressionException
+	 */
 	private Boolean exec(char curr,Boolean beforIsOpDataMark) throws ExpressionException {
 		
 		if(OpData.isOpData(curr)) {
@@ -72,6 +85,7 @@ public class CalculationExpression {
 				this.allOpData.push( (opData*10+(curr-'0')));
 			}else {
 				optd.push(curr-'0');
+				//收集所有操作数
 				this.allOpData.push( (curr-'0') );
 			}
 			beforIsOpDataMark=true;
@@ -108,7 +122,14 @@ public class CalculationExpression {
 		return beforIsOpDataMark;
 	}
 	
-	
+	/**
+	 * 对两个数进行算术操作。
+	 * @param data1
+	 * @param data2
+	 * @param op
+	 * @return
+	 * @throws ExpressionException
+	 */
 	private  Integer calculateTwoData(Integer data1,Integer data2, char op) throws ExpressionException {
 		switch(op) {
 		case '+' : return data2+data1;
