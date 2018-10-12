@@ -109,7 +109,6 @@ public class CalculationExpression {
 					Integer data1=optd.pop();
 					Integer data2=optd.pop();
 					optd.push(calculateTwoData(data1,data2,befor));
-					beforIsOpDataMark=true;
 					optr.pop();
 					beforIsOpDataMark=exec(curr,beforIsOpDataMark);
 					

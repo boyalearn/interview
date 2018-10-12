@@ -19,5 +19,11 @@ public class ExpressionTest {
 		calculation.setExpression("(1+20)*3+1*1000/100+2000");
 		Assert.assertTrue(calculation.calculate()==2073);
 		Assert.assertTrue("[1,20,3,1,1000,100,2000]".equals(calculation.getAllOpData().toString()));
+		
+		calculation.setExpression("3+(3-0) *2");
+		Assert.assertTrue(calculation.calculate()==9);
+		calculation.setExpression("3*0+3+8+9*1");
+		Assert.assertTrue(calculation.calculate()==20);
+		
 	}
 }
